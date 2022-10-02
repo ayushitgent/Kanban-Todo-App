@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+  <title>Dashboard</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" aria-label="Main navigation">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/dashboard">KANBAN - TODO TASK TRACKING APP</a>
+          <button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+      
+          <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/dashboard">Dashboard</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/summary">Summary</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/profile">Profile</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/">Logout</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+<br> <br> <br>     
+<h1> &nbsp Welcome {{data.user.username}}</h1>
+<br>
+<p> <h3> &nbsp Here are your Details !</h3></p>
+<br><br>
+<h4> &nbsp  Username : {{data.user.username}}</h3><br>
+<h4> &nbsp  Email : {{data.user.email}} </h3><br>
+<h4> &nbsp  Occupation : {{data.user.occupation}} </h3><br>
+<h4> &nbsp Contact No : {{data.user.contactno}} </h3><br>

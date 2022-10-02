@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+  <title>Dashboard</title>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" aria-label="Main navigation">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/dashboard">KANBAN - TODO TASK TRACKING APP</a>
+        <button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/dashboard">Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/summary/{{ data.username }}">Summary</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/profile">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+  </nav>
+  <br> <br> <br>     
+  <h1> &nbsp Welcome {{ data.user.username}}</h1>
+
+  {% if data.user.tasksrel|length < 5 %}
+  &nbsp &nbsp &nbsp <a href="/add_list">Add list</a>
+  {% endif %}
+  {% if data.user.tasksrel|length >= 5 %}
+  &nbsp &nbsp You can only add upto 5 lists.
+  {% endif %}
+  
+  {% if data.user.tasksrel %}
+  <div class="row">
+    {% for list in data.user.tasksrel %}
+    <div class="col-sm-2">
+    <br> &nbsp &nbsp Listname: {{list.listname}}
+<!--      <br> List ID: {{list.list_id}} <br> -->
+    <br>
+    &nbsp &nbsp  <a href="/edit/list/{{ list['listid'] }}">Edit list</a>&nbsp;&nbsp;&nbsp;
+    <a href="/delete/list/{{ list['listid'] }}" onclick="error_msg()">Delete list</a>
+    <br>
+        {% for card in list.cardrel %}
+          <div class="card text-bg-light mb-3" style="max-width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title"><br> 
+                <br> Card Title: {{card.title}}</h5>
+                <p class="card-text">
+                <br> Is completed?: {{card.iscompleted}}
+                <br> Content: {{card.content}}
+                <br> Created time: {{card.created}}
+                <br> Deadline: {{card.completiontime}}</p>
+                <div class="card-footer">
+                  <a href="/edit/card/{{ card['id'] }}">Edit</a>&nbsp;&nbsp;&nbsp;
+                  <a href="/delete/card/{{ card['id'] }}" onclick="error_msg()">Delete</a>
+                </div>
+            </div>
+          </div>
+       {% endfor %}
+      &nbsp &nbsp <a href="/add_card/{{ list['listname'] }}">Add More Cards</a>  
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  <script>
+    function error_msg() {
+      alert("Deleted Succesfully");
+    }
+  </script>
+</body>
+</html>
